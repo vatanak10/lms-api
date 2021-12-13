@@ -1,6 +1,7 @@
 package com.backend.lmsapi.controllers;
 
 import com.backend.lmsapi.dto.BookDto;
+import com.backend.lmsapi.dto.ResponseBook;
 import com.backend.lmsapi.services.BookService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +30,8 @@ public class BookController {
         return new ResponseEntity<>(bookService.addBook(bookDto), HttpStatus.OK);
     }
     
+    @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> updateBook(@RequestBody ResponseBook responseBook) {
+        return new ResponseEntity<>(bookService.updateBook(responseBook), HttpStatus.OK);
+    }
 }

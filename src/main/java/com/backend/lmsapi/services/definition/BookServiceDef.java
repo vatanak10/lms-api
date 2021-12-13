@@ -11,7 +11,9 @@ import com.backend.lmsapi.repositories.BookRepository;
 import com.backend.lmsapi.services.BookService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class BookServiceDef implements BookService {
 
     @Autowired
@@ -26,7 +28,8 @@ public class BookServiceDef implements BookService {
                 book.getId(),
                 book.getTitle(),
                 book.getAuthor(),
-                book.getImgUrl()
+                book.getImgUrl(),
+                book.getStatus()
             ));
         }
         return responseBook;
@@ -36,7 +39,14 @@ public class BookServiceDef implements BookService {
     // Insert command guide https://www.postgresqltutorial.com/postgresql-insert/
     @Override
     public Book addBook(BookDto bookDto){
-        Book book = new Book(UUID.randomUUID().toString(), bookDto.getTitle(), bookDto.getAuthor(), bookDto.getImgUrl(), "Available");
+        Book book = new Book(UUID.randomUUID().toString(), bookDto.getTitle(), bookDto.getAuthor(), bookDto.getImgUrl(), "available");
+        return bookRepository.save(book);
+    }
+
+
+    @Override
+    public Book updateBook(ResponseBook responseBook) {
+        Book book = new Book(responseBook.getId(), responseBook.getTitle(), responseBook.getAuthor(), responseBook.getImgUrl(), responseBook.getStatus());
         return bookRepository.save(book);
     }
 }

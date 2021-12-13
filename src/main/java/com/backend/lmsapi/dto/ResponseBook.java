@@ -11,6 +11,7 @@ public class ResponseBook {
     private String title;
     private String author;
     private String imgUrl;
+    private String status;
     
 
     public String getId() {
@@ -37,13 +38,20 @@ public class ResponseBook {
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
     
     public ResponseBook() {}
-    public ResponseBook(String id, String title, String author, String imgUrl) {
+    public ResponseBook(String id, String title, String author, String imgUrl, String status) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.imgUrl = imgUrl;
+        this.status = status;
     }
     
     
