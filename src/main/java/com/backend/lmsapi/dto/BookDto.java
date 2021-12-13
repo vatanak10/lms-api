@@ -5,20 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ResponseBook {
-
-    private String id;
+public class BookDto {
     private String title;
     private String author;
-    private String imgUrl;
-    
+    private String imgUrl;    
 
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
-        this.id = id;
-    }
     public String getTitle() {
         return title;
     }
@@ -37,14 +28,11 @@ public class ResponseBook {
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
-    
-    public ResponseBook() {}
-    public ResponseBook(String id, String title, String author, String imgUrl) {
-        this.id = id;
+
+    public BookDto() {}
+    public BookDto(String title, String author, String imgUrl){
         this.title = title;
         this.author = author;
         this.imgUrl = imgUrl;
     }
-    
-    
 }

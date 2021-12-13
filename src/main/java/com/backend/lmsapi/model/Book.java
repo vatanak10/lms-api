@@ -9,12 +9,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "tbl_book")
+@Getter
+@Setter
 public class Book extends BaseEntity implements Serializable {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    // @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, updatable = false)
     private String id;
 
@@ -24,11 +28,12 @@ public class Book extends BaseEntity implements Serializable {
     @Column(name = "author", nullable = false)
     private String author;
 
-    @Column(name = "img", nullable = false)
-    private String img;
+    @Column(name = "img_url", nullable = false)
+    private String imgUrl;
 
     @Column(name = "status", nullable = true)
     private String status;
+    
 
     public String getId() {
         return id;
@@ -54,12 +59,12 @@ public class Book extends BaseEntity implements Serializable {
         this.author = author;
     }
 
-    public String getImg() {
-        return img;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public String getStatus() {
@@ -70,15 +75,12 @@ public class Book extends BaseEntity implements Serializable {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return  "Book {" +
-                "id = " + id +
-                ", title = " + title +
-                ", author = " + author +
-                ", img = " + img +
-                ", status = " + status +
-                "}";
-
+    public Book() {}
+    public Book(String id, String title, String author, String imgUrl, String status){
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.imgUrl = imgUrl;
+        this.status = status;
     }
 }
