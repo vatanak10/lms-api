@@ -12,4 +12,5 @@ public interface BookService {
     List<ResponseBook> getAllBook();
     Book addBook(BookDto bookDto);
     Book updateBook(ResponseBook responseBook);
+    String deleteBook(ResponseBook responseBook);
 }

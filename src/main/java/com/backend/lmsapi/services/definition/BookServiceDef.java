@@ -49,4 +49,11 @@ public class BookServiceDef implements BookService {
         Book book = new Book(responseBook.getId(), responseBook.getTitle(), responseBook.getAuthor(), responseBook.getImgUrl(), responseBook.getStatus());
         return bookRepository.save(book);
     }
+
+    @Override
+    public String deleteBook(ResponseBook responseBook) {
+        Book book = new Book(responseBook.getId(), responseBook.getTitle(), responseBook.getAuthor(), responseBook.getImgUrl(), responseBook.setStatus("deleted"));
+        bookRepository.save(book);
+        return book.getStatus();
+    }
 }

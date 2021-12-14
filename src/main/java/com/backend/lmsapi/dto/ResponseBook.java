@@ -41,8 +41,9 @@ public class ResponseBook {
     public String getStatus() {
         return status;
     }
-    public void setStatus(String status) {
+    public String setStatus(String status) {
         this.status = status;
+        return status;
     }
     
     public ResponseBook() {}
