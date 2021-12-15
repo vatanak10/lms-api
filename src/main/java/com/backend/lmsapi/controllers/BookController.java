@@ -43,7 +43,7 @@ public class BookController {
     }
 
     @PostMapping("/delete")
-    public ResponseEntity<?> deleteBook(@RequestBody ResponseBook responseBook){
-        return new ResponseEntity<>(bookService.deleteBook(responseBook), HttpStatus.OK);
+    public ResponseEntity<?> deleteBook(@RequestParam String id){
+        return new ResponseEntity<>(bookService.deleteBook(id), HttpStatus.OK);
     }
 }

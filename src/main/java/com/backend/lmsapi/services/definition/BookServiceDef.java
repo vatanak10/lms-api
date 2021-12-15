@@ -63,9 +63,14 @@ public class BookServiceDef implements BookService {
 
     
     @Override
-    public String deleteBook(ResponseBook responseBook) {
-        Book book = new Book(responseBook.getId(), responseBook.getTitle(), responseBook.getAuthor(), responseBook.getImgUrl(), responseBook.setStatus("deleted"));
-        bookRepository.save(book);
-        return book.getStatus();
+    public String deleteBook(String id) {
+        Optional<Book> book = bookRepository.findById(id);
+        if(!book.isPresent()) {
+            return "Book cannot found";
+        }
+        Book res = book.get();
+        res.setStatus("deleted");
+        bookRepository.save(res);
+        return res.getStatus();
     }
 }

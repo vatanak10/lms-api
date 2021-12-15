@@ -13,5 +13,5 @@ public interface BookService {
     ResponseBook getBook(String id);
     Book addBook(BookDto bookDto);
     Book updateBook(ResponseBook responseBook);
-    String deleteBook(ResponseBook responseBook);
+    String deleteBook(String id);
 }
