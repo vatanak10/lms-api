@@ -2,6 +2,7 @@ package com.backend.lmsapi.services.definition;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import com.backend.lmsapi.dto.BookDto;
@@ -35,6 +36,16 @@ public class BookServiceDef implements BookService {
         return responseBook;
     }
 
+    @Override
+    public ResponseBook getBook(String id) {
+        Optional<Book> isBook = bookRepository.findByIdAndStatus(id, "available");
+
+        if(!isBook.isPresent()) {
+            return null;
+        }
+        Book yesBook = isBook.get();
+        return new ResponseBook(yesBook.getId(), yesBook.getTitle(), yesBook.getAuthor(), yesBook.getImgUrl(), yesBook.getStatus());        
+    }
 
     // Insert command guide https://www.postgresqltutorial.com/postgresql-insert/
     @Override
@@ -50,6 +61,7 @@ public class BookServiceDef implements BookService {
         return bookRepository.save(book);
     }
 
+    
     @Override
     public String deleteBook(ResponseBook responseBook) {
         Book book = new Book(responseBook.getId(), responseBook.getTitle(), responseBook.getAuthor(), responseBook.getImgUrl(), responseBook.setStatus("deleted"));

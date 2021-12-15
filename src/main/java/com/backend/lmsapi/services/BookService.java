@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface BookService {
     List<ResponseBook> getAllBook();
+    ResponseBook getBook(String id);
     Book addBook(BookDto bookDto);
     Book updateBook(ResponseBook responseBook);
     String deleteBook(ResponseBook responseBook);
