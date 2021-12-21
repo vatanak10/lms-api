@@ -1,6 +1,7 @@
 package com.backend.lmsapi.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import lombok.Setter;
 @Table(name = "tbl_book")
 @Getter
 @Setter
-public class Book extends BaseEntity implements Serializable {
+public class Book implements Serializable {
     @Id
     @Column(name = "id", nullable = false, updatable = false)
     private String id;
@@ -30,7 +31,32 @@ public class Book extends BaseEntity implements Serializable {
 
     @Column(name = "status", nullable = true)
     private String status;
+
+    @Column(name = "created_date", nullable = true)
+    private Date createdDate;
+
+    @Column(name = "modified_date", nullable = true)
+    private Date modifiedDate;
     
+    public Book() {}
+    public Book(String id, String title, String author, String imgUrl, String status){
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.imgUrl = imgUrl;
+        this.status = status;
+    }
+
+    public Book(String id, String title, String author, String imgUrl, String status, Date createdDate, Date modifiedDate){
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.imgUrl = imgUrl;
+        this.status = status;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
+    }
+
 
     public String getId() {
         return id;
@@ -72,12 +98,19 @@ public class Book extends BaseEntity implements Serializable {
         this.status = status;
     }
 
-    public Book() {}
-    public Book(String id, String title, String author, String imgUrl, String status){
-        this.id = id;
-        this.title = title;
-        this.author = author;
-        this.imgUrl = imgUrl;
-        this.status = status;
+    public Date getCreatedDate() {
+        return createdDate;
     }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }    
 }

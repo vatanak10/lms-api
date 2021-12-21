@@ -1,6 +1,7 @@
 package com.backend.lmsapi.services.definition;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -50,21 +51,28 @@ public class BookServiceDef implements BookService {
     // Insert command guide https://www.postgresqltutorial.com/postgresql-insert/
     @Override
     public Book addBook(BookDto bookDto){
-        Book book = new Book(UUID.randomUUID().toString(), bookDto.getTitle(), bookDto.getAuthor(), bookDto.getImgUrl(), "available");
+        Date date = new Date();
+        Book book = new Book(UUID.randomUUID().toString(), bookDto.getTitle(), bookDto.getAuthor(), bookDto.getImgUrl(), "available", date, date);
         return bookRepository.save(book);
     }
 
 
     @Override
     public Book updateBook(ResponseBook responseBook) {
-        Book book = new Book(responseBook.getId(), responseBook.getTitle(), responseBook.getAuthor(), responseBook.getImgUrl(), responseBook.getStatus());
+        Optional<Book> oldBook = bookRepository.findByIdAndStatus(responseBook.getId(), "available");
+        if(!oldBook.isPresent()) {
+            return null;
+        }
+        Book res = oldBook.get();
+        Date date = new Date();
+        Book book = new Book(responseBook.getId(), responseBook.getTitle(), responseBook.getAuthor(), responseBook.getImgUrl(), responseBook.getStatus(), res.getCreatedDate(), date);
         return bookRepository.save(book);
     }
 
     
     @Override
     public String deleteBook(String id) {
-        Optional<Book> book = bookRepository.findById(id);
+        Optional<Book> book = bookRepository.findByIdAndStatus(id, "available");
         if(!book.isPresent()) {
             return "Book cannot found";
         }
