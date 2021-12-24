@@ -50,14 +50,12 @@ public class AuthorServiceDef implements AuthorService {
 
     @Override
     public Author addAuthor(AuthorDto authorDto) {
-        // TODO Auto-generated method stub
         Author author = new Author(UUID.randomUUID().toString(), authorDto.getName(),authorDto.getBiography(),authorDto.getImgUrl(),"available");
         return authorRepository.save(author);
     }
 
     @Override
     public Author updateAuthor(ResponseAuthor responseAuthor) {
-        // TODO Auto-generated method stub
         Author author = new Author(responseAuthor.getId(),responseAuthor.getName(),responseAuthor.getBiography(),responseAuthor.getImgUrl(),responseAuthor.getStatus());
         return authorRepository.save(author);
     }
