@@ -54,6 +54,4 @@ public class ResponseBook {
         this.imgUrl = imgUrl;
         this.status = status;
     }
-    
-    
 }
