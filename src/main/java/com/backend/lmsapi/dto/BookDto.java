@@ -1,5 +1,7 @@
 package com.backend.lmsapi.dto;
 
+import java.util.Date;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,14 +9,31 @@ import lombok.Setter;
 @Setter
 public class BookDto {
     private String title;
+    private String genre;
     private String author;
-    private String imgUrl;    
+    private String imgUrl;
+    private Date publishedDate;
+    
+    public BookDto() {}
+    public BookDto(String title, String genre, String author, String imgUrl, Date publishedDate){
+        this.title = title;
+        this.genre = genre;
+        this.author = author;
+        this.imgUrl = imgUrl;
+        this.publishedDate = publishedDate;
+    }
 
     public String getTitle() {
         return title;
     }
     public void setTitle(String title) {
         this.title = title;
+    }
+    public String getGenre() {
+        return genre;
+    }
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
     public String getAuthor() {
         return author;
@@ -28,11 +47,10 @@ public class BookDto {
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
-
-    public BookDto() {}
-    public BookDto(String title, String author, String imgUrl){
-        this.title = title;
-        this.author = author;
-        this.imgUrl = imgUrl;
+    public Date getPublishedDate() {
+        return publishedDate;
     }
+    public void setPublishedDate(Date publishedDate) {
+        this.publishedDate = publishedDate;
+    }   
 }

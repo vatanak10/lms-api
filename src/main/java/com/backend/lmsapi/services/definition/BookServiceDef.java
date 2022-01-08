@@ -29,9 +29,11 @@ public class BookServiceDef implements BookService {
             responseBook.add(new ResponseBook(
                 book.getId(),
                 book.getTitle(),
+                book.getGenre(),
                 book.getAuthor(),
                 book.getImgUrl(),
-                book.getStatus()
+                book.getStatus(),
+                book.getPublishedDate()
             ));
         }
         return responseBook;
@@ -45,14 +47,22 @@ public class BookServiceDef implements BookService {
             return null;
         }
         Book yesBook = isBook.get();
-        return new ResponseBook(yesBook.getId(), yesBook.getTitle(), yesBook.getAuthor(), yesBook.getImgUrl(), yesBook.getStatus());        
+        return new ResponseBook(
+                yesBook.getId(), 
+                yesBook.getTitle(),  
+                yesBook.getGenre(),
+                yesBook.getAuthor(), 
+                yesBook.getImgUrl(), 
+                yesBook.getStatus(),
+                yesBook.getPublishedDate()
+            );        
     }
 
     // Insert command guide https://www.postgresqltutorial.com/postgresql-insert/
     @Override
     public Book addBook(BookDto bookDto){
         Date date = new Date();
-        Book book = new Book(UUID.randomUUID().toString(), bookDto.getTitle(), bookDto.getAuthor(), bookDto.getImgUrl(), "available", date, date);
+        Book book = new Book(UUID.randomUUID().toString(), bookDto.getTitle(), bookDto.getGenre(), bookDto.getAuthor(), bookDto.getImgUrl(), "available", bookDto.getPublishedDate(), date, date);
         return bookRepository.save(book);
     }
 
@@ -65,7 +75,7 @@ public class BookServiceDef implements BookService {
         }
         Book res = oldBook.get();
         Date date = new Date();
-        Book book = new Book(responseBook.getId(), responseBook.getTitle(), responseBook.getAuthor(), responseBook.getImgUrl(), responseBook.getStatus(), res.getCreatedDate(), date);
+        Book book = new Book(responseBook.getId(), responseBook.getTitle(), responseBook.getGenre(), responseBook.getAuthor(), responseBook.getImgUrl(), responseBook.getStatus(), responseBook.getPublishedDate(), res.getCreatedDate(), date);
         return bookRepository.save(book);
     }
 
