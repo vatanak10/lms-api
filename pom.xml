@@ -9,9 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.backend</groupId>
-	<artifactId>lms-api</artifactId>
+	<artifactId>lmsapi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>lms-api</name>
+	<packaging>war</packaging>
+	<name>lmsapi</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
@@ -46,7 +47,7 @@
 			<artifactId>lombok</artifactId>
 			<version>1.18.20</version>
 			<scope>provided</scope>
-		</dependency>
+		</dependency>		
 
 		<!-- Conect to DB -->
 		<dependency>
@@ -71,6 +72,11 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.6.2</version>				
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.3.1</version>		
 			</plugin>
 		</plugins>
 	</build>
