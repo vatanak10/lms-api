@@ -14,7 +14,7 @@ import lombok.Setter;
 @Table(name = "tbl_author")
 @Getter
 @Setter
-public class Author extends BaseEntity implements Serializable {
+public class Author implements Serializable {
     @Id
     @Column(name = "id", nullable = false, updatable = false)
     private String id;
