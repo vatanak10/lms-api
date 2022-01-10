@@ -10,10 +10,10 @@
 	</parent>
 	<groupId>com.backend</groupId>
 	<artifactId>lmsapi</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.1</version>
 	<packaging>war</packaging>
 	<name>lmsapi</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Spring Boot API for Libary Management System</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
