@@ -3,77 +3,66 @@ package com.backend.lmsapi.dto;
 import java.sql.Date;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class IssueBookDto {
-    private String name;
     private String bookId;
-    private String bookName;
+    private String userId;
+    private String userName;
     private Date issueDate;
     private Date returnDate;
 
-    
-    public String getName() {
-        return name;
+    public IssueBookDto(String bookId, String userId, String userName, Date issueDate, Date returnDate) {
+        this.bookId = bookId;
+        this.userId = userId;
+        this.userName = userName;
+        this.issueDate = issueDate;
+        this.returnDate = returnDate;
     }
-
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 
     public String getBookId() {
         return bookId;
     }
 
-
     public void setBookId(String bookId) {
         this.bookId = bookId;
     }
 
-
-    public String getBookName() {
-        return bookName;
+    public String getUserId() {
+        return userId;
     }
 
-
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public Date getIssueDate() {
         return issueDate;
     }
 
-
     public void setIssueDate(Date issueDate) {
         this.issueDate = issueDate;
     }
-
 
     public Date getReturnDate() {
         return returnDate;
     }
 
-
     public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
     }
 
-
-    public IssueBookDto(){}
-
-
-    public IssueBookDto(String name, String bookId, String bookName, Date issueDate, Date returnDate) {
-        this.name = name;
-        this.bookId = bookId;
-        this.bookName = bookName;
-        this.issueDate = issueDate;
-        this.returnDate = returnDate;
-    }
-    
+        
 }

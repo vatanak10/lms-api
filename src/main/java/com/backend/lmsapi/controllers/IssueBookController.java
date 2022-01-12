@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/isssuebook")
+@RequestMapping("/issue-book")
 public class IssueBookController {
     @Autowired
     private IssueBookService issueBookService;
