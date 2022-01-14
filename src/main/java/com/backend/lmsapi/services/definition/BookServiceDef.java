@@ -23,7 +23,8 @@ public class BookServiceDef implements BookService {
     
     @Override
     public List<ResponseBook> getAllBook() {
-        List<Book> books = bookRepository.findAllByStatus("available");
+        String[] status = {"available", "issued"};
+        List<Book> books = bookRepository.findAllByStatusIn(status);
         List<ResponseBook> responseBook = new ArrayList<>();
         for (Book book: books) {
             responseBook.add(new ResponseBook(
@@ -41,7 +42,7 @@ public class BookServiceDef implements BookService {
 
     @Override
     public ResponseBook getBook(String id) {
-        Optional<Book> isBook = bookRepository.findByIdAndStatus(id, "available");
+        Optional<Book> isBook = bookRepository.findById(id);
 
         if(!isBook.isPresent()) {
             return null;
@@ -90,5 +91,29 @@ public class BookServiceDef implements BookService {
         res.setStatus("deleted");
         bookRepository.save(res);
         return res.getStatus();
+    }
+
+    @Override
+    public Boolean borrowBook(String id){
+        Optional<Book> book = bookRepository.findByIdAndStatus(id, "available");
+        if(!book.isPresent()) {
+            return false;
+        }
+        Book res = book.get();
+        res.setStatus("issued");
+        bookRepository.save(res);
+        return true;
+    }
+
+    @Override
+    public Boolean returnBook(String id){
+        Optional<Book> book = bookRepository.findByIdAndStatus(id, "issued");
+        if(!book.isPresent()) {
+            return false;
+        }
+        Book res = book.get();
+        res.setStatus("available");
+        bookRepository.save(res);
+        return true;
     }
 }

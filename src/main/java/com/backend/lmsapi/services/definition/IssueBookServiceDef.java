@@ -53,8 +53,9 @@ public class IssueBookServiceDef implements IssueBookService{
 
     @Override
     public IssueBook addIssueBook(IssueBookDto issueBookDto){
+        bookService.borrowBook(issueBookDto.getBookId());
         ResponseBook book = bookService.getBook(issueBookDto.getBookId());
-        IssueBook issueBook = new IssueBook(UUID.randomUUID().toString(),issueBookDto.getBookId(),book.getTitle(),issueBookDto.getUserId(),issueBookDto.getUserName(),issueBookDto.getIssueDate(),issueBookDto.getReturnDate(),"issued");
+        IssueBook issueBook = new IssueBook(UUID.randomUUID().toString(),issueBookDto.getBookId(),book.getTitle(),issueBookDto.getUserId(),issueBookDto.getUserName(),issueBookDto.getIssueDate(),issueBookDto.getReturnDate(),book.getStatus());
         return issueBookRepository.save(issueBook);
     }
 
@@ -67,7 +68,7 @@ public class IssueBookServiceDef implements IssueBookService{
         IssueBook res = issueBook.get();
         res.setStatus("returned");
         issueBookRepository.save(res);
+        bookService.returnBook(res.getBookId());
         return res.getStatus();
-    
     }
 }
