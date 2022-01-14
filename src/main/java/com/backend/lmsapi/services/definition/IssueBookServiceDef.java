@@ -6,10 +6,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 import com.backend.lmsapi.dto.IssueBookDto;
-import com.backend.lmsapi.model.Book;
+import com.backend.lmsapi.dto.ResponseBook;
 import com.backend.lmsapi.model.IssueBook;
-import com.backend.lmsapi.repositories.BookRepository;
 import com.backend.lmsapi.repositories.IssueBookRepository;
+import com.backend.lmsapi.services.BookService;
 import com.backend.lmsapi.services.IssueBookService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +20,12 @@ import org.springframework.stereotype.Service;
 public class IssueBookServiceDef implements IssueBookService{
     @Autowired
     private IssueBookRepository issueBookRepository;
-    private BookRepository bookRepository;
+    @Autowired
+    private BookService bookService;
 
     @Override
     public List<IssueBook> getAllIssueBook() {
-        List<IssueBook> issueBooks = issueBookRepository.findAllByStatus("not return");
+        List<IssueBook> issueBooks = issueBookRepository.findAllByStatus("issued");
         List<IssueBook> responseIssueBooks = new ArrayList<>();
         for (IssueBook issueBook: issueBooks){
             responseIssueBooks.add(new IssueBook(
@@ -52,13 +53,8 @@ public class IssueBookServiceDef implements IssueBookService{
 
     @Override
     public IssueBook addIssueBook(IssueBookDto issueBookDto){
-        // Optional<Book> isBook = bookRepository.findByIdAndStatus(issueBookDto.getBookId(), "available");
-        // if(!isBook.isPresent()) {
-        //     return null;
-        // }
-        // Book book = isBook.get();
-
-        IssueBook issueBook = new IssueBook(UUID.randomUUID().toString(),issueBookDto.getBookId(),"Book Name",issueBookDto.getUserId(),issueBookDto.getUserName(),issueBookDto.getIssueDate(),issueBookDto.getReturnDate(),"issued");
+        ResponseBook book = bookService.getBook(issueBookDto.getBookId());
+        IssueBook issueBook = new IssueBook(UUID.randomUUID().toString(),issueBookDto.getBookId(),book.getTitle(),issueBookDto.getUserId(),issueBookDto.getUserName(),issueBookDto.getIssueDate(),issueBookDto.getReturnDate(),"issued");
         return issueBookRepository.save(issueBook);
     }
 
