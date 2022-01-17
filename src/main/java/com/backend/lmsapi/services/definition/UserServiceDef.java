@@ -54,5 +54,4 @@ public class UserServiceDef implements UserService {
 
         user.getRoles().add(role);
     }
-
 }
