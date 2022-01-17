@@ -17,3 +17,8 @@ Password: `lmsdatabase`
 (https://cloudkatha.com/how-to-deploy-spring-boot-application-on-aws-ec2/)
 
 (https://www.javacodegeeks.com/2019/10/deploy-spring-boot-application-aws-ec2-instance.html)
+
+## USER AND SECURITY WITH JWT GUIDE
+
+Spring Boot and Spring Security with JWT including Access and Refresh Tokens
+https://youtu.be/VVn9OG9nfH0
