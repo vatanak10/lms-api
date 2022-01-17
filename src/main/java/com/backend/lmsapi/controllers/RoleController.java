@@ -1,8 +1,7 @@
 package com.backend.lmsapi.controllers;
 
 import com.backend.lmsapi.model.Role;
-import com.backend.lmsapi.services.UserService;
-
+import com.backend.lmsapi.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,16 +18,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class RoleController {
 
     @Autowired
-    private UserService userService;
+    private RoleService roleService;
 
     @PostMapping()
     public ResponseEntity<Role> addRole(@RequestBody Role role) {
-        return new ResponseEntity<>(userService.addRole(role), HttpStatus.CREATED);
+        return new ResponseEntity<>(roleService.addRole(role), HttpStatus.CREATED);
     }
 
     @PostMapping("/addtouser")
     public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserForm form) {
-        userService.addRoleToUser(form.getUsername(), form.getRoleName());
+        roleService.addRoleToUser(form.getUsername(), form.getRoleName());
         return ResponseEntity.ok().build();
     }
 }

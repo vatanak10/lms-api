@@ -30,9 +30,6 @@ public class UserServiceDef implements UserService, UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private RoleRepository roleRepository;
-
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -46,19 +43,6 @@ public class UserServiceDef implements UserService, UserDetailsService {
     @Override
     public User addUser(User user) {
         return userRepository.save(user);
-    }
-
-    @Override
-    public Role addRole(Role role) {
-        return roleRepository.save(role);
-    }
-
-    @Override
-    public void addRoleToUser(String username, String roleName) {
-        User user = userRepository.findByUsername(username);
-        Role role = roleRepository.findByName(roleName);
-
-        user.getRoles().add(role);
     }
 
     @Override
