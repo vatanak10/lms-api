@@ -1,5 +1,7 @@
 package com.backend.lmsapi.services.definition;
 
+import java.util.List;
+
 import com.backend.lmsapi.model.Role;
 import com.backend.lmsapi.model.User;
 import com.backend.lmsapi.repositories.RoleRepository;
@@ -20,6 +22,11 @@ public class RoleServiceDef implements RoleService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Override
+    public List<Role> getAllRoles() {
+        return roleRepository.findAll();
+    }
 
     @Override
     public Role addRole(Role role) {

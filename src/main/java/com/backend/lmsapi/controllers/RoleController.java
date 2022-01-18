@@ -1,5 +1,7 @@
 package com.backend.lmsapi.controllers;
 
+import java.util.List;
+
 import com.backend.lmsapi.model.Role;
 import com.backend.lmsapi.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -19,6 +22,11 @@ public class RoleController {
 
     @Autowired
     private RoleService roleService;
+
+    @GetMapping()
+    public ResponseEntity<List<Role>> getAllRoles() {
+        return new ResponseEntity<>(roleService.getAllRoles(), HttpStatus.OK);
+    }
 
     @PostMapping()
     public ResponseEntity<Role> addRole(@RequestBody Role role) {
