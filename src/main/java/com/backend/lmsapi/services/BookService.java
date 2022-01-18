@@ -14,4 +14,6 @@ public interface BookService {
     Book addBook(BookDto bookDto);
     Book updateBook(ResponseBook responseBook);
     String deleteBook(String id);
+    Boolean borrowBook(String id);
+    Boolean returnBook(String id);
 }
