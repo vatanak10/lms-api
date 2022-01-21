@@ -11,6 +11,7 @@ public class ResponseBook {
 
     private String id;
     private String title;
+    private String description;
     private String genre;
     private String author;
     private String imgUrl;
@@ -19,10 +20,11 @@ public class ResponseBook {
 
 
     public ResponseBook() {}
-    public ResponseBook(String id, String title, String genre, String author, String imgUrl, String status, Date publishedDate) {
+    public ResponseBook(String id, String title, String genre,String description, String author, String imgUrl, String status, Date publishedDate) {
         this.id = id;
         this.title = title;
         this.genre = genre;
+        this.description = description;
         this.author = author;
         this.imgUrl = imgUrl;
         this.status = status;
@@ -40,6 +42,13 @@ public class ResponseBook {
     }
     public void setTitle(String title) {
         this.title = title;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
     }
     public String getGenre() {
         return genre;
