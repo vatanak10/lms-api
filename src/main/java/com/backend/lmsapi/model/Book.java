@@ -23,6 +23,9 @@ public class Book implements Serializable {
     @Column(name = "title", nullable = false)
     private String title;
 
+    @Column(name = "description", nullable = true)
+    private String description;
+
     @Column(name = "genre", nullable = true)
     private String genre;
 
@@ -45,9 +48,10 @@ public class Book implements Serializable {
     private Date modifiedDate;
     
     public Book() {}
-    public Book(String id, String title, String genre, String author, Date publishedDate, String imgUrl, String status){
+    public Book(String id, String title,String description, String genre, String author, Date publishedDate, String imgUrl, String status){
         this.id = id;
         this.title = title;
+        this.description = description;
         this.title = genre;
         this.author = author;
         this.publishedDate = publishedDate;
@@ -55,9 +59,10 @@ public class Book implements Serializable {
         this.status = status;
     }
 
-    public Book(String id, String title, String genre, String author, String imgUrl, String status, Date publishedDate, Date createdDate, Date modifiedDate){
+    public Book(String id, String title,String description, String genre, String author, String imgUrl, String status, Date publishedDate, Date createdDate, Date modifiedDate){
         this.id = id;
         this.title = title;
+        this.description = description;
         this.genre = genre;
         this.author = author;
         this.imgUrl = imgUrl;
@@ -78,6 +83,13 @@ public class Book implements Serializable {
     }
     public void setTitle(String title) {
         this.title = title;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
     }
     public String getGenre() {
         return genre;

@@ -9,14 +9,16 @@ import lombok.Setter;
 @Setter
 public class BookDto {
     private String title;
+    private String description;
     private String genre;
     private String author;
     private String imgUrl;
     private Date publishedDate;
     
     public BookDto() {}
-    public BookDto(String title, String genre, String author, String imgUrl, Date publishedDate){
+    public BookDto(String title,String description, String genre, String author, String imgUrl, Date publishedDate){
         this.title = title;
+        this.description = description;
         this.genre = genre;
         this.author = author;
         this.imgUrl = imgUrl;
@@ -28,6 +30,13 @@ public class BookDto {
     }
     public void setTitle(String title) {
         this.title = title;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
     }
     public String getGenre() {
         return genre;
