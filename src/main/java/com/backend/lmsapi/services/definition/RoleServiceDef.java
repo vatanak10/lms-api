@@ -34,10 +34,13 @@ public class RoleServiceDef implements RoleService {
     }
 
     @Override
-    public void addRoleToUser(String username, String roleName) {
+    public User addRoleToUser(String username, String roleName) {
         User user = userRepository.findByUsername(username);
         Role role = roleRepository.findByName(roleName);
 
-        user.getRoles().add(role);
+        if (!user.getRoles().contains(role)) {
+            user.getRoles().add(role);
+        }
+        return userRepository.save(user);
     }
 }
